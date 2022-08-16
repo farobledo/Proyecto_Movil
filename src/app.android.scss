@@ -1,0 +1,17 @@
+// Import common styles
+@import "app-common";
+
+// Place any CSS rules you want to apply only on Android here
+.page__content {
+    &-icon,
+    &-placeholder {
+        color: #0f0;
+        font-size: 25;
+        vertical-align: top;
+    }
+
+    &-icon {
+        font-size: 80;
+        margin-top: 10%;
+    }
+}

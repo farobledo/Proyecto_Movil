@@ -1,0 +1,35 @@
+<ActionBar>
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label text="Detalles"></Label>
+</ActionBar>
+
+<StackLayout class="page__content">
+    <Label vericalAlignment="center" text="Edicion de usuario" fontSize="20"></Label>
+    <StackLayout class="nt-form">
+        <StackLayout class="nt-input">
+            <TextField #nombretf="ngModel" [(ngModel)]="tfnombre"
+                hint="Ingresar nombre..." required minlen="3" class="input">
+            </TextField>
+            <Label *ngIf="nombretf.hasError('required')" text="*" color="red"></Label>
+            <Label *ngIf="!nombretf.hasError('required') && nombretf.hasError('minlen')" text="2+"></Label>
+        </StackLayout>
+        <Button (tap)="onButtonTap($event)" class="-primary -rounded-sm" *ngIf="nombretf.valid">
+            <FormattedString>            
+                <Span text="Guardar "></Span>
+                <Span text="&#xf0C7;" class="fas"></Span>
+            </FormattedString>
+        </Button>
+    </StackLayout>
+</StackLayout>

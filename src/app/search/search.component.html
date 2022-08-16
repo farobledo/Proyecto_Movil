@@ -1,0 +1,29 @@
+<ActionBar>
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label text="Search"></Label>
+</ActionBar>
+
+<StackLayout class="page__content" #layout>
+    <Label class="page__content-icon fas" text="&#xf002;" #iconsearch></Label>
+    <SearchForm (search)="buscarAhora($event)"></SearchForm> 
+    <ListView [items]="this.resultados" (itemTap)="onItemTap($event)" style="height: 4250px">
+        <ng-template let-x="item" let-i="index">
+            <FlexboxLayout flexDirection="row" >
+                <Label order="1" vericalAlignment="center" [text]="x.titulo" style="width: 60%"></Label>
+                <Image src="font://&#xF005;" class="fas " col="2" width="30" style="color: #f0f" (longPress)="onLongPress(x)"></Image>
+            </FlexboxLayout>
+        </ng-template>
+    </ListView>   
+</StackLayout>
